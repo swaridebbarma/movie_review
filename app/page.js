@@ -4,6 +4,8 @@ import  { useState } from 'react';
 import { initial_movie_list } from './Data.js';
 import Header from './Header.js';
 import Movierow from './Movie-row.js';
+import Footer from './Footer.js';
+
 export default function Home() {
     const [movies, setMovies] = useState(initial_movie_list);
     const handleDelete = (movieData) => {
@@ -42,6 +44,7 @@ export default function Home() {
 
                 />
             ))}
+            <Footer />
         </>
     );
 };
