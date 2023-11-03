@@ -1,11 +1,27 @@
 "use client";
 import './globals.css';
+import  { useState } from 'react';
+import { initial_movie_list } from './Data.js';
 import Header from './Header.js';
+import Movierow from './Movie-row.js';
 export default function Home() {
+    const [movies, setMovies] = useState(initial_movie_list);
+    const handleDelete = (movieData) => {
+        const updatedMovies = movies.filter((movie) => movie !== movieData);
+        setMovies(updatedMovies);
+    };
+    
     return (
         <>
             <Header />
-            
+            {movies.map((movie) => (
+                <Movierow
+                    key={movie.id}
+                    movie={movie}
+                    onDelete={() => handleDelete(movie)}
+
+                />
+            ))}
         </>
     );
 };
