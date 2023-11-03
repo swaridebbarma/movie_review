@@ -10,6 +10,25 @@ export default function Home() {
         const updatedMovies = movies.filter((movie) => movie !== movieData);
         setMovies(updatedMovies);
     };
+    const handleLike = (id, votes) => {
+        const updatedMoviesData = movies.map(movie => 
+            movie.id === id ? { ...movie, votes } : movie
+        );
+        const sortedData = updatedMoviesData.sort(compare);
+        setMovies(sortedData);
+        setMovies(updatedMoviesData);
+        
+        function compare (x,y){ 
+            if (x.votes < y.votes) {
+                return 1;
+            } else if (x.votes > y.votes) {
+                return -1;
+            } else {
+                return 0;
+            }
+        };        
+    };
+    
     
     return (
         <>
@@ -19,6 +38,7 @@ export default function Home() {
                     key={movie.id}
                     movie={movie}
                     onDelete={() => handleDelete(movie)}
+                    handleLike={handleLike}
 
                 />
             ))}
